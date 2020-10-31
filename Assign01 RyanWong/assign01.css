@@ -1,0 +1,71 @@
+/* initial css design based on template found at:
+ https://www.quackit.com/html/html_editors/scratchpad/?example=/css/flexbox/examples/flexbox_website_layout_1
+this css was customized by author */
+
+<style>* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+}
+
+#main {
+    display: flex;
+    flex: 1;
+}
+
+#main>nav,
+#main>aside {
+    flex: 0 0 20vw;
+}
+
+#main>nav {
+    background: #D7E8D4;
+    order: 1;
+}
+
+#main>aside {
+    background: beige;
+    order: 2;
+}
+
+#main>article {
+    flex: 1;
+    order: 3;
+}
+header,
+footer,
+article,
+nav,
+aside {
+    padding: 1em;
+    margin: 0.5em;
+}
+
+header {
+    background: yellowgreen;
+    height: auto;
+    border: 1px solid black;
+}
+
+header h1,
+h2 {
+    display: inline-block;
+}
+
+header h2 {
+    margin-left: 0.5em;
+
+}
+
+footer {
+    background: yellowgreen;
+    height: 5vh;
+}
+
+
+</style>
