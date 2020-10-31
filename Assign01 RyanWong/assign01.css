@@ -1,6 +1,6 @@
 /* initial css design based on template found at:
  https://www.quackit.com/html/html_editors/scratchpad/?example=/css/flexbox/examples/flexbox_website_layout_1
-this css was customized by author */
+this css was customized by author Ryan Wong */
 
 <style>* {
     box-sizing: border-box;
@@ -29,6 +29,7 @@ body {
 }
 
 #main>aside {
+    flex: 1.5;
     background: beige;
     order: 2;
 }
@@ -36,7 +37,9 @@ body {
 #main>article {
     flex: 1;
     order: 3;
+    flex-direction: column;
 }
+
 header,
 footer,
 article,
@@ -67,5 +70,10 @@ footer {
     height: 5vh;
 }
 
-
+#gallery {
+    background-color: yellowgreen;
+}
+#map {
+    background-color: red;
+}
 </style>
