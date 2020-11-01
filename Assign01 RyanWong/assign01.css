@@ -29,7 +29,7 @@ body {
 }
 
 #main>aside {
-    flex: 1.5;
+    flex: 1;
     background: beige;
     order: 2;
 }
@@ -70,9 +70,10 @@ footer {
     height: 5vh;
 }
 
-#gallery {
+#galleryInfo {
     background-color: yellowgreen;
 }
+
 #map {
     background-color: red;
 }

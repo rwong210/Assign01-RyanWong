@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>COMP 3512 Assign1</title>
     <link rel="stylesheet" href="assign01.css">
-    <script src="assign01.js"></script>  
+    <script src="assign01.js"></script>
 </head>
 
 
@@ -14,7 +14,12 @@
         <h1>COMP 3512 Assign1<h1>
                 <h2>Ryan Wong</h2>
     </header>
-    <div id="loader1" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div id="loader1" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <div id="main">
         <nav id="galleryList">
             <h2>Gallery List</h2>
@@ -24,9 +29,16 @@
 
         </nav>
 
-        <aside>Aside
-            <div id="gallery">Gallery Info</div>
-            <div id="map">Map</div>
+        <aside>
+            <h1>Gallery Info</h1>
+            <div id="galleryInfo">
+                <h2 id="galleryName"></h2>
+                <p id="galleryNative"></p>
+                <p id="galleryCity"></p>
+                <p id="galleryAddress"></p>
+                <p id="galleryCountry"></p>
+                <div id="map">Map</div>
+            </div>
         </aside>
         <article id="paintings">Paintings</article>
     </div>
