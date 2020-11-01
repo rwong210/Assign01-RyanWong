@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 displayPaintings(data);
+                paintView(data);
 
             })
             .catch(error => console.error(error));
@@ -119,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let img = document.createElement("img");
                 img.setAttribute("src", `${fileLocation}`);
                 img.setAttribute("alt", `${painting.Title}`)
+                td1.setAttribute("class", "clickable");
                 td1.appendChild(img);
 
                 let td2 = document.createElement("td");
@@ -178,7 +180,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
     function toggleList() {
         const button = document.querySelector("#listButton");
         button.addEventListener('click', (e) => {
@@ -191,6 +192,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 nav.style.display = "none";
             }
         });
+    }
+
+    function paintView(gallery) {
+        let images = document.querySelectorAll(".clickable");
+        for (i of images) {
+            i.addEventListener('click', (e) => {
+                let lookup = e.target.innerText;
+                let found = galleries.find(g => g.GalleryName === lookup);
+                let selectedImg = e.target;
+                console.log(selectedImg);
+                console.log(gallery);
+                const main = document.querySelector("#main");
+                main.style.display = "none";
+                const paintView = document.querySelector("#paintView");
+                paintView.style.display = "flex";
+
+                let h1 = document.createElement("h1");
+                h1.innerText = `gallery.`
+            });
+
+        }
     }
     // function for comparing for sorting
     function compare(a, b) {

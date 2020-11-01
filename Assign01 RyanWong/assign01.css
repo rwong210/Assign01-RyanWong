@@ -87,12 +87,9 @@ footer {
     vertical-align: bottom;
 }
 
-.minList{
-    border: 3px solid black;
-    
-}
 
-.maxList{
-    border: none;
+#paintView{
+    border: 3px solid black;
+    display: none;
 }
 </style>
