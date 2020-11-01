@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function initMap() {
 
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
+                zoom: 18,
                 center: latLng,
             });
         }
@@ -175,13 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
-
-
-
-
-
-
 
     // function for comparing for sorting
     function compare(a, b) {
