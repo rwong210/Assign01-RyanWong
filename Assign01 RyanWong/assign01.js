@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             galleryInfo(found);
             paintingsInfo(found);
+            createMap(found);
         })
     }
 
@@ -76,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#galleryInfo").appendChild(a);
     }
 
-    // when the user clicks, populate the Paintings Article
+    // populate the Paintings Article
     function paintingsInfo(found) {
         const paintingInfo = document.querySelector("#paintings");
 
@@ -119,12 +120,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 td1.appendChild(img);
 
                 let td2 = document.createElement("td");
-                td2.innerText = `${painting.FirstName} ${painting.LastName}`;
+                if (painting.FirstName != null) {
+                    td2.innerText = `${painting.FirstName} ${painting.LastName}`;
+                } else {
+                    td2.innerText = `${painting.LastName}`;
+                }
 
                 let td3 = document.createElement("td");
                 td3.innerText = `${painting.Title}`;
 
-                let td4 =document.createElement("td");
+                let td4 = document.createElement("td");
                 td4.innerText = `${painting.YearOfWork}`;
 
                 tr.appendChild(td1);
@@ -135,8 +140,50 @@ document.addEventListener("DOMContentLoaded", function () {
             })
         }
     }
+    // create a map for the map section of the page with the clicked gallery location
+    function createMap(gallery) {
+        // create latitude and longitude object
+        let latLng = {
+            lat: gallery.Latitude,
+            lng: gallery.Longitude
+        };
 
-    // function for comparing gallery names for sorting
+        var map;
+        initMap();
+        createMarker(map, gallery.Latitude, gallery.Longitude, gallery.GalleryName);
+
+        // function to create map 
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: latLng,
+            });
+        }
+
+        // function to create map marker for gallery location
+        function createMarker(map, latitude, longitude, name) {
+            let imageLatLong = {
+                lat: latitude,
+                lng: longitude
+            };
+            let marker = new google.maps.Marker({
+                position: imageLatLong,
+                title: name,
+                map: map
+            });
+        }
+
+    }
+
+
+
+
+
+
+
+
+    // function for comparing for sorting
     function compare(a, b) {
         if (a.GalleryName < b.GalleryName) {
             return -1;
