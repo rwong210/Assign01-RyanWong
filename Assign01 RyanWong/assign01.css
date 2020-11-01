@@ -78,13 +78,21 @@ footer {
     height: 600px;
 }
 
-.mystyle {
-    width: 100%;
-    padding: 25px;
-    background-color: coral;
-    color: white;
-    font-size: 25px;
-    box-sizing: border-box;
-  }
-  
+#listButton{
+    padding: 1px;
+}
+#minMax{
+    width: 25px;
+    height: auto;
+    vertical-align: bottom;
+}
+
+.minList{
+    border: 3px solid black;
+    
+}
+
+.maxList{
+    border: none;
+}
 </style>

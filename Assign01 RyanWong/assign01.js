@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 populateList(data);
                 // hideLoading();
                 getClicked(data);
+                toggleList();
             })
             .catch(error => console.error(error));
         // showLoading();
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             galleryInfo(found);
             paintingsInfo(found);
             createMap(found);
-            toggleList();
+
         })
     }
 
@@ -179,11 +180,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function toggleList() {
-        document.querySelector("#listButton").addEventListener('click', (e) => {
+        const button = document.querySelector("#listButton");
+        button.addEventListener('click', (e) => {
             const nav = document.querySelector("#galleryList");
 
             if (nav.style.display === "none") {
                 nav.style.display = "block";
+
             } else {
                 nav.style.display = "none";
             }
