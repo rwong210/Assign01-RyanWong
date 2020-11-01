@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(galleryAPI)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 populateList(data);
                 // hideLoading();
                 getClicked(data);
@@ -42,40 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
             let found = galleries.find(g => g.GalleryName === lookup);
 
             galleryInfo(found);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            for (let g of galleries) {
-                id = g.GalleryID;
-            }
-            let queryString = `${paintingAPI}${id}`;
-            fetch(queryString)
-                .then(response => response.json())
-                .then(data => {
-                    // populate Gallery Info
-                    // populate Map 
-                    // populate Paintings
-                })
-                .catch(error => console.error(error));
-            // showLoading();
+            paintingsInfo(found);
         })
     }
 
     // populate the Gallery Info Aside
     function galleryInfo(gallery) {
         let galleryInfo = document.querySelector("#galleryInfo");
+        galleryInfo.innerHTML = "";
 
         let name = document.createElement("h2");
         name.innerHTML = `${gallery.GalleryName}`;
@@ -86,43 +59,80 @@ document.addEventListener("DOMContentLoaded", function () {
         galleryInfo.appendChild(native);
 
         let city = document.createElement("p");
-        city.innerHTML =`${gallery.GalleryCity}`;
+        city.innerHTML = `${gallery.GalleryCity}`;
         galleryInfo.appendChild(city);
 
-        let galleryAddress = document.createElement("#galleryAddress");
-        let address = document.createTextNode(`${gallery.GalleryAddress}`);
-        galleryAddress.appendChild(address);
+        let address = document.createElement("p");
+        address.innerHTML = `${gallery.GalleryAddress}`;
+        galleryInfo.appendChild(address);
 
-        let galleryCountry = document.querySelector("#galleryCountry");
-        let country = document.createTextNode(`${gallery.GalleryCountry}`);
-        galleryCountry.appendChild(country);
-
-        let = document.createElement("a");
-        a.setAttribute("href", `${gallery.GalleryWebSite}`);
-        a.textContent = `${gallery.GalleryWebSite}`;
-        document.querySelector("#galleryInfo").appendChild(a);
+        let country = document.createElement("p");
+        country.innerHTML = `${gallery.GalleryCountry}`;
+        galleryInfo.appendChild(country);
 
         let a = document.createElement("a");
         a.setAttribute("href", `${gallery.GalleryWebSite}`);
         a.textContent = `${gallery.GalleryWebSite}`;
         document.querySelector("#galleryInfo").appendChild(a);
-
-        //let website = document.createTextNode(`${gallery.GalleryWebSite}`);
-        // galleryWebsite.appendChild(website);
     }
 
-
-
-
     // when the user clicks, populate the Paintings Article
-    function paintingInfo(images) {
-        const results = document.querySelector("#paintings");
-        paintings.innerHTML = "";
-        for (image of images) {
-            let img = document.createElement("img");
-            img.setAttribute("src", `${imageURL}${image.filename}`);
-            img.setAttribute("alt", `${image.title}`);
-            results.appendChild(img);
+    function paintingsInfo(found) {
+        const paintingInfo = document.querySelector("#paintings");
+
+        let id = found.GalleryID;
+        console.log(found);
+
+        let queryString = `${paintingAPI}${id}`;
+        console.log(queryString);
+        fetch(queryString)
+            .then(response => response.json())
+            .then(data => {
+                displayPaintings(data);
+
+            })
+            .catch(error => console.error(error));
+
+
+        //for (image of images) {
+        //    let img = document.createElement("img");
+        //   img.setAttribute("src", `${imageURL}${image.filename}`);
+        //    img.setAttribute("alt", `${image.title}`);
+        //   results.appendChild(img);
+        // }
+
+        function displayPaintings(paintings) {
+            let emptyTable = document.querySelector("#tableContent");
+            emptyTable.innerHTML = "";
+            paintings.forEach(painting => {
+                let fileLocation = "https://res.cloudinary.com/funwebdev/image/upload/SIZE/art/paintings/square/FILENAME";
+                const table = document.querySelector("#tableContent");
+                //let fileLoc = fileLocation.toString();
+                fileLocation = fileLocation.replace(/SIZE/i, "w_100");
+                fileLocation = fileLocation.replace("FILENAME", `${painting.ImageFileName}`);
+
+                let tr = document.createElement("tr");
+                let td1 = document.createElement("td");
+                let img = document.createElement("img");
+                img.setAttribute("src", `${fileLocation}`);
+                img.setAttribute("alt", `${painting.Title}`)
+                td1.appendChild(img);
+
+                let td2 = document.createElement("td");
+                td2.innerText = `${painting.FirstName} ${painting.LastName}`;
+
+                let td3 = document.createElement("td");
+                td3.innerText = `${painting.Title}`;
+
+                let td4 =document.createElement("td");
+                td4.innerText = `${painting.YearOfWork}`;
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                table.appendChild(tr);
+            })
         }
     }
 
@@ -135,11 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return 1;
         }
         return 0;
-    }
-
-    // function to check for matching gallery name
-    function search(a, b) {
-        return a === b
     }
 
 });
