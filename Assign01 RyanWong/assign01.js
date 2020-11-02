@@ -198,18 +198,19 @@ document.addEventListener("DOMContentLoaded", function () {
         let images = document.querySelectorAll(".clickable");
         for (i of images) {
             i.addEventListener('click', (e) => {
-                let lookup = e.target.innerText;
-                let found = galleries.find(g => g.GalleryName === lookup);
+                
                 let selectedImg = e.target;
+                let lookup = e.target.alt;
+                let found = gallery.find(g => g.Title === lookup);
                 console.log(selectedImg);
-                console.log(gallery);
+                console.log(found);
                 const main = document.querySelector("#main");
                 main.style.display = "none";
                 const paintView = document.querySelector("#paintView");
                 paintView.style.display = "flex";
 
                 let h1 = document.createElement("h1");
-                h1.innerText = `gallery.`
+                h1.innerText = found.Title;
             });
 
         }
