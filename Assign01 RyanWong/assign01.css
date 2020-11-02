@@ -4,6 +4,7 @@ this css was customized by author Ryan Wong */
 
 <style>* {
     box-sizing: border-box;
+    
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
+    font-family: 'Noto Sans JP', 'sans-serif';
 }
 
 #main {
@@ -78,18 +80,93 @@ footer {
     height: 600px;
 }
 
-#listButton{
+#listButton {
     padding: 1px;
 }
-#minMax{
+
+#minMax {
     width: 25px;
     height: auto;
     vertical-align: bottom;
 }
 
 
-#paintView{
-    border: 3px solid black;
+.hiddenPainting {
     display: none;
 }
+
+.showLarge {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: max-content;
+    border: 3px solid black;
+    min-height: 60vh;
+    padding: 35px;
+    margin: 35px;
+    margin-top: 15px;
+}
+
+#imageContainer{
+    grid-column: 1;
+    grid-row: 1/4;
+}
+
+#headerContainer {
+    grid-column: 2;
+    grid-row: 1/2;
+}
+#detailsContainer {
+    grid-column: 2;
+    grid-row: 2/3;
+}
+#colorsContainer{
+    grid-column: 1;
+    grid-row: 3/4;
+}
+
+#colorsContainer span{
+    display:inline-block;
+    margin: 5px;
+    height: 70px;
+    width: 70px;
+}
+
+table img:hover{
+    border: 3px solid lime;
+}
+#imageContainer img:hover{
+    border: 3px solid lime;
+}
+
+.centered{
+    grid-template-columns: 1fr;
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+}
+.centered > img:hover{
+    border-style: none;
+}
+#buttonContainer{
+    align-content: center;
+    justify-content: center;
+}
+
+/*
+    loader CSS from https://www.w3schools.com/howto/howto_css_loader.asp
+*/
+#loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 </style>
